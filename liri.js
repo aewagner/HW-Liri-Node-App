@@ -29,4 +29,52 @@ if (inputOne === "my-tweets") {
         }
     });
 
+} else if (inputOne === "spotify-this-song") {
+
+    var spotify = new Spotify({
+
+        id: "d3b691929cf04f92a44cb221690df275",
+        secret: "6b3e1468353f48a9be6f84d0fc761ea2"
+    });
+
+    if (inputTwo) {
+        spotify.search({ type: 'track', query: inputTwo }, function(err, data) {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+
+            var songs = data.tracks.items;
+
+            for (var i = 0; i < songs.length; i++) {
+                console.log(i);
+                console.log("artist(s): " + songs[i].artists);
+                console.log("song name: " + songs[i].name);
+                console.log("preview song: " + songs[i].preview_url);
+                console.log("album: " + songs[i].album.name);
+                console.log("-----------------------------------");
+            }
+        });
+    } else {
+        spotify.search({ type: 'track', query: "The Sign" }, function(err, data) {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+
+            var songs = data.tracks.items;
+
+            for (var i = 0; i < songs.length; i++) {
+                console.log(i);
+                console.log("artist(s): " + songs[i].artists);
+                console.log("song name: " + songs[i].name);
+                console.log("preview song: " + songs[i].preview_url);
+                console.log("album: " + songs[i].album.name);
+                console.log("-----------------------------------");
+            }
+
+            console.log(data.tracks.items);
+        });
+
+    }
+
+
 }
